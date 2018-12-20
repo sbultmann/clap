@@ -1,0 +1,14 @@
+{
+  "name": "clap",
+  "version": "1.0.0",
+  "description": "clap detector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clap-detector": "^0.4.1"
+  }
+}
