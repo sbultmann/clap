@@ -27,20 +27,10 @@ clapDetector.onClap(function(history) {
     //console.log(typeof d.getHours())
     //console.log(d.getMinutes())
     var h = d.getHours()
-   // if (h < 19 && h > 7){
-   // cmd = 'espeak "Es ist '+d.getHours()+' Uhr '+d.getMinutes()+'!" -vde+m3 -s 130 --stdout | aplay -D "plughw:Device,0"'
-   // child = exec(cmd, function (error, stdout, stderr) {
- // sys.print('stdout: ' + stdout);
- // sys.print('stderr: ' + stderr);
-  //if (error !== null) {
-    //console.log('exec error: ' + error);
-  //}
-//});
-//}    //console.log('your callback code here AAA ', history);
 
 if (d.getDate() == 24 && d.getMonth() == 11){
 	var num = Math.floor(Math.random()*5+1)
-	cmd = 'mplayer sounds/'+num+'.wav'
+	cmd = 'mplayer -endpos 20 sounds/'+num+'.wav'
 	child = exec(cmd, function (error, stdout, stderr) {
   		sys.print('stdout: ' + stdout);
   		sys.print('stderr: ' + stderr);
@@ -49,8 +39,16 @@ if (d.getDate() == 24 && d.getMonth() == 11){
   			}
 		});
 	}
-else if (h < 19 && h > 7){
-    	cmd = 'espeak "Es ist '+d.getHours()+' Uhr '+d.getMinutes()+'!" -vde+m3 -s 130 --stdout | aplay -D "plughw:Device,0"'
+else if (h < 19 && h > 5){
+			var m = d.getMinutes()
+			if (m == 0){m=''}
+			if (h > 5 && h < 12){
+				var text = ' Guten Morgen!'
+			}
+			else {
+				var text = ''
+			}
+    	cmd = 'espeak "Es ist '+d.getHours()+' Uhr '+m+'!'+text+'" -v mb-de2 --stdout | aplay -D "plughw:Device,0"'
     	child = exec(cmd, function (error, stdout, stderr) {
   		sys.print('stdout: ' + stdout);
   		sys.print('stderr: ' + stderr);
